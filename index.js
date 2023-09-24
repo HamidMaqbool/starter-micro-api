@@ -37,14 +37,14 @@ app.post('/', async (req, res) => {
 
   var out;
   if (type == 'post') {
-    out = await axios.post(url,data, config).then((response) =>
-    response.data)
-    .catch((error) => {
-      return error;
-    });
+    // out = await axios.post(url, data, config).then((response) =>
+    // response.data)
+    // .catch((error) => {
+    //   return error;
+    // });
 
   } else {
-    out = await axios.get(url, config).then((response) =>
+    out = await axios.get(url).then((response) =>
       response.data)
       .catch((error) => {
         return error;
