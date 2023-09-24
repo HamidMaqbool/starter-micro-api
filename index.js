@@ -1,13 +1,13 @@
 var http = require('http');
 var axios = require('axios');
 
-axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
+// axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
 
 http.createServer(async function (req, res) {
     console.log(`Just got a request at ${req.url}!`)
-    var out = await axios.get('https://api3.binance.com/api/v3/myTrades', { crossdomain: true }) .then((response) => response.data)
+    var out = await axios.get('https://api3.binance.com/api/v3/myTrades') .then((response) => response.data)
     .catch((error) => {
-    return 'error';
+    return error;
     });
 
     res.write(out);
