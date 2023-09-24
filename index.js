@@ -17,23 +17,42 @@ var axios = require('axios');
 
 const express = require('express');
 const app = express();
- 
+
 app.use(express.json());
- 
+
 app.get('/', (req, res) => {
-  res.send({'out':'get'})
+
+  res.send({ 'out': 'get' })
 });
+
+app.post('/', async (req, res) => {
+  const { url, type, key, data } = req.body;
  
-app.post('/', (req, res) => {
-  const { username, password } = req.body;
-  const { authorization } = req.headers;
-  res.send({
-    username,
-    password,
-    authorization,
-  });
+
+  const config = {
+    headers:{
+      'X-MBX-APIKEY': key
+    }
+  };
+
+  var out;
+  if (type == 'post') {
+    out = await axios.post(url,data, config).then((response) =>
+    response.data)
+    .catch((error) => {
+      return error;
+    });
+
+  } else {
+    out = await axios.get(url, config).then((response) =>
+      response.data)
+      .catch((error) => {
+        return error;
+      });
+  }
+  res.send(out);
 });
- 
+
 app.listen(3000, () => {
   console.log('Our express server is up on port 3000');
 });
