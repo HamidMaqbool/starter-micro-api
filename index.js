@@ -5,7 +5,7 @@ var axios = require('axios');
 
 http.createServer(async function (req, res) {
     console.log(`Just got a request at ${req.url}!`)
-    var out = await axios.get('https://api3.binance.com/api/v3/myTrades') .then((response) => response.data)
+    var out = await axios.get('https://api3.binance.com/api/v3/ticker/price?symbol=BTCUSDT') .then((response) => response.data)
     .catch((error) => {
     return JSON.stringify(error);
     });
