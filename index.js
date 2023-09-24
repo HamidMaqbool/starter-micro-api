@@ -50,7 +50,8 @@ app.post('/', async (req, res) => {
         return error;
       });
   }
-  res.send(req.body);
+  // res.send(req.body);
+  res.send(out);
 });
 
 app.listen(3000, () => {
